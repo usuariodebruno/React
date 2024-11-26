@@ -23,7 +23,11 @@ class Counter extends React.Component {
 
     // Método que é chamado após o componente ser montado
     componentDidMount() { 
+        // Se há algum dado que voce precisa recuperar do backend, é aqui que você deve fazer isso
+
         localStorage.setItem("state", JSON.stringify(this.state)) // Salvando o estado no localStorage
+        this.setState(JSON.parse(localStorage.getItem("state")));  // Recuperando o estado do localStorage
+        
         console.log("Componente montado: "+ localStorage.getItem('state'));
 
         //this.setState(JSON.parse(localStorage.getItem("state")));  // Recuperando o estado do localStorage
@@ -35,6 +39,11 @@ class Counter extends React.Component {
             return false, console.log("Chegou a 10, não atualiza mais");
         }
         return true;
+    }
+
+    // Método que é chamado quando o componente vai sair da tela
+    componentWillUnmount() {
+
     }
 
     render() { // Renderiza toda vez que um componente é atualizado
